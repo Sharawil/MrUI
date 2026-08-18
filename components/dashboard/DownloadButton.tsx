@@ -3,6 +3,8 @@
 import { useState } from "react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import { Download } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 interface DownloadButtonProps {
   files: Record<string, { code: string }>;
@@ -45,8 +47,14 @@ export function DownloadButton({ files, projectName = "mrui-generated-site" }: D
   };
 
   return (
-    <button onClick={handleDownload} disabled={isGeneratingZip} className="inline-flex items-center justify-center rounded-md border border-[var(--border-color)] bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:border-[var(--purple-main)] hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50">
+    <Button
+      onClick={handleDownload}
+      disabled={isGeneratingZip}
+      variant="default"
+      className="gap-2 shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+    >
+      <Download className="w-4 h-4" />
       {isGeneratingZip ? "Preparing ZIP…" : "Download ZIP"}
-    </button>
+    </Button>
   );
 }
